@@ -407,7 +407,7 @@ const SecondaryEmissionFundamentals = () => {
           <h4 style={{ color: '#fff', marginBottom: '15px', textAlign: 'center' }}>
             🎬 Side View: Bias Configuration & Electric Field
           </h4>
-          <svg width="100%" height="220" viewBox="0 0 480 220" style={{ display: 'block', margin: '0 auto' }}>
+          <svg width="100%" height="200" viewBox="0 0 480 200" style={{ display: 'block', margin: '0 auto' }}>
             <defs>
               <pattern id="gridSide" width="20" height="20" patternUnits="userSpaceOnUse">
                 <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#1e3a5f" strokeWidth="0.5"/>
@@ -420,19 +420,15 @@ const SecondaryEmissionFundamentals = () => {
                 <stop offset="100%" stopColor="#4a5568"/>
               </linearGradient>
             </defs>
-            <rect width="480" height="220" fill="url(#gridSide)"/>
+            <rect width="480" height="200" fill="url(#gridSide)"/>
             
-            {/* Biased frame (top and bottom bars connected to bias wires) */}
-            <rect x="100" y="25" width="220" height="8" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} opacity="0.5" rx="2"/>
-            <rect x="100" y="167" width="220" height="8" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} opacity="0.5" rx="2"/>
-            <text x="210" y="18" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="8" textAnchor="middle">BIASED FRAME</text>
+            {/* Upstream bias wire/frame plane (coplanar - same height as signal wire) */}
+            <line x1="120" y1="55" x2="120" y2="145" stroke={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} strokeWidth="4"/>
+            <text x="120" y="160" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="9" textAnchor="middle">BIAS</text>
+            <text x="120" y="172" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="8" textAnchor="middle">(upstream)</text>
+            <text x="120" y="184" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="7" textAnchor="middle">+150-700V</text>
             
-            {/* Upstream bias wire plane (rhombus edge seen from side) */}
-            <line x1="130" y1="33" x2="130" y2="167" stroke={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} strokeWidth="3"/>
-            <text x="130" y="185" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="8" textAnchor="middle">BIAS</text>
-            <text x="130" y="195" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="7" textAnchor="middle">(upstream)</text>
-            
-            {/* Signal wire cross-section */}
+            {/* Signal wire cross-section (same height as bias) */}
             <rect x="200" y="55" width="25" height="90" fill="url(#wireGradSide)" stroke="#e2e8f0" strokeWidth="1"/>
             
             {/* Entry surface highlight */}
@@ -444,54 +440,55 @@ const SecondaryEmissionFundamentals = () => {
             <text x="225" y="48" fill="#ffd93d" fontSize="7" textAnchor="middle">EXIT</text>
             
             {/* Wire label */}
-            <text x="212" y="105" fill="#2d3748" fontSize="8" textAnchor="middle" fontWeight="bold">Signal</text>
-            <text x="212" y="115" fill="#2d3748" fontSize="8" textAnchor="middle" fontWeight="bold">Wire</text>
+            <text x="212" y="97" fill="#2d3748" fontSize="8" textAnchor="middle" fontWeight="bold">Signal</text>
+            <text x="212" y="108" fill="#2d3748" fontSize="8" textAnchor="middle" fontWeight="bold">Wire</text>
             
-            {/* Downstream bias wire plane */}
-            <line x1="290" y1="33" x2="290" y2="167" stroke={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} strokeWidth="3"/>
-            <text x="290" y="185" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="8" textAnchor="middle">BIAS</text>
-            <text x="290" y="195" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="7" textAnchor="middle">(downstream)</text>
+            {/* Downstream bias wire/frame plane (coplanar - same height as signal wire) */}
+            <line x1="305" y1="55" x2="305" y2="145" stroke={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} strokeWidth="4"/>
+            <text x="305" y="160" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="9" textAnchor="middle">BIAS</text>
+            <text x="305" y="172" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="8" textAnchor="middle">(downstream)</text>
+            <text x="305" y="184" fill={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} fontSize="7" textAnchor="middle">+150-700V</text>
             
-            {/* Electric field lines from bias to signal wire */}
+            {/* Electric field lines from signal wire to bias wires ONLY (horizontal) */}
             {biasPolarity === 'positive' && (
               <g stroke="#4ecdc4" strokeWidth="0.8" opacity="0.6" strokeDasharray="4,2">
-                {/* Upstream E-field lines */}
-                <path d="M 133 60 Q 165 65 197 70" fill="none"/>
-                <path d="M 133 85 Q 165 88 197 90" fill="none"/>
-                <path d="M 133 110 Q 165 108 197 105" fill="none"/>
-                <path d="M 133 135 Q 165 130 197 125" fill="none"/>
-                {/* Downstream E-field lines */}
-                <path d="M 228 70 Q 260 65 287 60" fill="none"/>
-                <path d="M 228 90 Q 260 88 287 85" fill="none"/>
-                <path d="M 228 105 Q 260 108 287 110" fill="none"/>
-                <path d="M 228 125 Q 260 130 287 135" fill="none"/>
-                {/* E-field to frame (top/bottom) */}
-                <path d="M 200 55 Q 180 45 160 33" fill="none"/>
-                <path d="M 225 55 Q 245 45 265 33" fill="none"/>
-                <path d="M 200 145 Q 180 155 160 167" fill="none"/>
-                <path d="M 225 145 Q 245 155 265 167" fill="none"/>
+                {/* Upstream E-field lines (entry surface → upstream bias) */}
+                <line x1="197" y1="70" x2="125" y2="70"/>
+                <line x1="197" y1="100" x2="125" y2="100"/>
+                <line x1="197" y1="130" x2="125" y2="130"/>
+                {/* Downstream E-field lines (exit surface → downstream bias) */}
+                <line x1="228" y1="70" x2="300" y2="70"/>
+                <line x1="228" y1="100" x2="300" y2="100"/>
+                <line x1="228" y1="130" x2="300" y2="130"/>
               </g>
             )}
             
-            {/* Electric field arrows */}
+            {/* Electric field arrows pointing toward bias */}
             {biasPolarity === 'positive' && (
               <g fill="#4ecdc4" opacity="0.8">
-                <polygon points="197,70 192,67 192,73"/>
-                <polygon points="197,105 192,102 192,108"/>
-                <polygon points="228,70 233,67 233,73"/>
-                <polygon points="228,105 233,102 233,108"/>
+                {/* Arrows on upstream side (pointing left toward bias) */}
+                <polygon points="130,70 135,67 135,73"/>
+                <polygon points="130,100 135,97 135,103"/>
+                <polygon points="130,130 135,127 135,133"/>
+                {/* Arrows on downstream side (pointing right toward bias) */}
+                <polygon points="295,70 290,67 290,73"/>
+                <polygon points="295,100 290,97 290,103"/>
+                <polygon points="295,130 290,127 290,133"/>
               </g>
             )}
             
             {/* E-field label */}
             {biasPolarity === 'positive' && (
-              <text x="165" y="75" fill="#4ecdc4" fontSize="7" opacity="0.8">E-field</text>
+              <g>
+                <text x="160" y="88" fill="#4ecdc4" fontSize="8" opacity="0.9">E-field</text>
+                <text x="255" y="88" fill="#4ecdc4" fontSize="8" opacity="0.9">E-field</text>
+              </g>
             )}
             
             {/* Beam direction arrow */}
-            <line x1="30" y1="100" x2="110" y2="100" stroke="#4ecdc4" strokeWidth="2" strokeDasharray="5,3"/>
-            <polygon points="110,95 125,100 110,105" fill="#4ecdc4"/>
-            <text x="70" y="88" fill="#4ecdc4" fontSize="9" textAnchor="middle">Beam</text>
+            <line x1="30" y1="100" x2="100" y2="100" stroke="#4ecdc4" strokeWidth="2" strokeDasharray="5,3"/>
+            <polygon points="100,95 115,100 100,105" fill="#4ecdc4"/>
+            <text x="65" y="88" fill="#4ecdc4" fontSize="9" textAnchor="middle">Beam</text>
             
             {/* Beam particles */}
             {renderBeamAnimation()}
@@ -500,12 +497,12 @@ const SecondaryEmissionFundamentals = () => {
             {[0, 1, 2].map(i => {
               const phase = (animationStep + i * 20) % 50;
               const startX = 197;
-              const endX = 135;
+              const endX = 125;
               const currentX = startX + (endX - startX) * (phase / 50);
               const y = 70 + i * 30;
               const opacity = biasPolarity === 'positive' ? Math.max(0, 1 - phase / 50) : 0.3;
               return (
-                <circle key={`se-up-${i}`} cx={currentX} cy={y} r={2} fill="#ffd93d" opacity={opacity}/>
+                <circle key={`se-up-${i}`} cx={currentX} cy={y} r={2.5} fill="#ffd93d" opacity={opacity}/>
               );
             })}
             
@@ -513,34 +510,34 @@ const SecondaryEmissionFundamentals = () => {
             {[0, 1, 2].map(i => {
               const phase = (animationStep + i * 20 + 10) % 50;
               const startX = 228;
-              const endX = 285;
+              const endX = 300;
               const currentX = startX + (endX - startX) * (phase / 50);
               const y = 70 + i * 30;
               const opacity = biasPolarity === 'positive' ? Math.max(0, 1 - phase / 50) : 0.3;
               return (
-                <circle key={`se-down-${i}`} cx={currentX} cy={y} r={2} fill="#ffd93d" opacity={opacity}/>
+                <circle key={`se-down-${i}`} cx={currentX} cy={y} r={2.5} fill="#ffd93d" opacity={opacity}/>
               );
             })}
             
-            {/* Beam continuation after wire */}
-            <line x1="295" y1="100" x2="440" y2="100" stroke="#4ecdc480" strokeWidth="2" strokeDasharray="5,3"/>
+            {/* Beam continuation after downstream bias */}
+            <line x1="310" y1="100" x2="440" y2="100" stroke="#4ecdc480" strokeWidth="2" strokeDasharray="5,3"/>
             <polygon points="440,95 455,100 440,105" fill="#4ecdc480"/>
             
             {/* Legend */}
-            <g transform="translate(370, 30)">
-              <rect x="0" y="0" width="100" height="75" fill="#0d1117" stroke="#30363d" rx="4"/>
+            <g transform="translate(370, 25)">
+              <rect x="0" y="0" width="100" height="70" fill="#0d1117" stroke="#30363d" rx="4"/>
               <circle cx="15" cy="15" r="3" fill="#4ecdc4"/>
               <text x="25" y="18" fill="#e0e0e0" fontSize="8">Primary particle</text>
               <circle cx="15" cy="32" r="3" fill="#ffd93d"/>
               <text x="25" y="35" fill="#e0e0e0" fontSize="8">SE (2-5 eV peak)</text>
-              <line x1="10" y1="47" x2="20" y2="47" stroke={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} strokeWidth="2"/>
-              <text x="25" y="50" fill="#e0e0e0" fontSize="8">Bias (150-700V)</text>
+              <line x1="10" y1="47" x2="20" y2="47" stroke={biasPolarity === 'positive' ? '#4ecdc4' : '#ff6b6b'} strokeWidth="3"/>
+              <text x="25" y="50" fill="#e0e0e0" fontSize="8">Bias (coplanar)</text>
               <line x1="10" y1="62" x2="20" y2="62" stroke="#4ecdc4" strokeWidth="1" strokeDasharray="3,2"/>
               <text x="25" y="65" fill="#e0e0e0" fontSize="8">E-field lines</text>
             </g>
           </svg>
           <p style={{ textAlign: 'center', color: '#888', fontSize: '12px', marginTop: '10px' }}>
-            Electric field from biased frame/wires (150-700V) attracts low-energy secondary electrons (peak 2-5 eV)
+            Bias wires/frame are coplanar • E-field attracts SE (few eV) horizontally to bias planes
           </p>
         </div>
 
