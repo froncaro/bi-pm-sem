@@ -355,7 +355,8 @@ const SecondaryEmissionFundamentals = () => {
               fontSize: '12px',
               color: theme.cyan
             }}>
-              Typical SEY: 1.2-2.8 e⁻/proton (maximum at 80-350 keV)<br/>
+              Typical SEY @ low Energy: 1.2-2.8 e⁻/proton (maximum at 80-350 keV)<br/>
+              Typical SEY @ high Energy: few 10e-2 e⁻/proton (for Ep>=1GeV)<br/>
               Escape depth: only 3-7 nm from surface
             </div>
           </div>
