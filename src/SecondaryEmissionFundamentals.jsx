@@ -349,15 +349,18 @@ const SecondaryEmissionFundamentals = () => {
             </p>
             <div style={{
               marginTop: '12px',
-              padding: '10px',
+              padding: '10px 10px 10px 14px',
               background: theme.cyanBg,
               borderRadius: '6px',
               fontSize: '12px',
-              color: theme.cyan
+              color: theme.cyan,
+              borderLeft: `4px solid ${theme.cyan}`
             }}>
-              Typical SEY @ low Energy: 1.2-2.8 e⁻/proton (maximum at 80-350 keV)<br/>
-              Typical SEY @ high Energy: few 10e-2 e⁻/proton (for Ep>=1GeV)<br/>
-              Escape depth: only 3-7 nm from surface
+              <ul style={{ margin: 0, paddingLeft: '18px', listStyleType: 'disc' }}>
+                <li>Typical SEY @ low Energy: 1.2-2.8 e⁻/proton (maximum at 80-350 keV)</li>
+                <li>Typical SEY @ high Energy: few 10⁻² e⁻/proton (for E<sub>p</sub> ≥ 1 GeV)</li>
+                <li>Escape depth: only 3-7 nm from surface</li>
+              </ul>
             </div>
           </div>
         </div>
